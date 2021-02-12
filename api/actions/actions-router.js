@@ -47,10 +47,11 @@ router.post('/', (req, res) => {
       .then(({ id }) => {
         Actions.get(id).then((action) => res.status(201).json(action));
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         res
           .status(500)
-          .json({ message: 'The action information could not be retrieved' });
+          .json({ message: `No project found with id ${project_id}.` });
       });
   }
 });
